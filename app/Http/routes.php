@@ -14,3 +14,20 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'tasks'], function () {
+    Route::get('/', function () {
+         $tasks = \App\Task::all(); //collaction
+        return view('tasks.index', ['tasks' => $tasks,]);
+    });
+
+    Route::post('/', function () {
+
+    });
+
+    Route::delete('/{task}', function () {
+
+    });
+});
+
+
