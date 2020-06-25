@@ -29,6 +29,8 @@ Route::group(['prefix' => 'tasks'], function () {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255'
         ]);
+        $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2); //browser lang
+        \Illuminate\Support\Facades\App::setLocale($lang); //set lang
         if($validator->fails()) {
             return redirect(route('tasks.create'))
                 ->withInput()
