@@ -36,10 +36,15 @@ Route::group(['prefix' => 'tasks'], function () {
                 ->withInput()
                 ->withErrors($validator);
         }
+
+        //Сохранение новой модели
 //        $task = new \App\Task();
 //        $task->name = $request->name;
 //        $task->save();
+
+        //Массовое заполнение модели (в модели определено св-во $fillable)
         \App\Task::create(['name' => $request->name]);
+
         return redirect(route('tasks.list'));
     })->name('tasks.store');
 
